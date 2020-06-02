@@ -1,10 +1,13 @@
 <?php
-include_once "src/Student.php";
-include_once "src/controller/StudentManager.php";
-include_once "src/database/DBconnect.php";
-$studentManager = new StudentManager();
-$students = $studentManager->getAll();
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    include_once "../src/controller/StudentManager.php";
+    include_once "../src/database/DBconnect.php";
+    include_once "../src/Student.php";
+    $name = $_REQUEST["search"];
+    $studentManager = new StudentManager();
+    $students = $studentManager->search($name);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,16 +20,11 @@ $students = $studentManager->getAll();
 </head>
 <body>
 <table border="1">
-    <form method="get" action="action/search.php">
-        <input type="text" name="search" placeholder="search with Name">
-        <input type="submit" value="Search">
-    </form>
     <tr>
-        <th>Stt</th>
+        <th>Id</th>
         <th>Name</th>
         <th>Age</th>
         <th>Address</th>
-        <td><a href="action/add.php">Add</a></td>
     </tr>
     <?php foreach ($students as $key => $student): ?>
         <tr>
@@ -34,13 +32,10 @@ $students = $studentManager->getAll();
             <td><?php echo $student->getName() ?></td>
             <td><?php echo $student->getAge() ?></td>
             <td><?php echo $student->getAddress() ?></td>
-            <td><a href="action/update.php">Update</a></td>
-            <td><a onclick="return confirm('ban chac chan muon xoa?')" href="action/delete.php?id=<?php echo $student->getId()?>">Delete</a></td>
 
         </tr>
     <?php endforeach; ?>
 
 </table>
-
 </body>
 </html>
