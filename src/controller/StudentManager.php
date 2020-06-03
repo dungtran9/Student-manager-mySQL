@@ -35,6 +35,22 @@ class StudentManager
         $stmt->bindParam(3, $student->getAddress());
         return $stmt->execute();
     }
+    public function getData($id){
+        $sql = "SELECT * FROM Students WHERE Id ='$id'";
+        $stmt = $this->database->query($sql);
+        $result = $stmt->fetch();
+        $data = new Student($result["Name"], $result["Age"], $result["Address"]);
+        return $data;
+    }
+    public function update($student){
+        $sql =' UPDATE Students SET  Name= :Name, Age= :Age, Address= :Address WHERE Id= :Id';
+        $stmt= $this->database->prepare($sql);
+        $stmt->bindParam(':Id', $student->getId());
+        $stmt->bindParam(':Name', $student->getName());
+        $stmt->bindParam(':Age', $student->getAge());
+        $stmt->bindParam(':Address', $student->getAddress());
+        return $stmt->execute();
+    }
 
     public function delete($id)
     {
@@ -60,4 +76,5 @@ class StudentManager
         }
         return $arr;
     }
+
 }

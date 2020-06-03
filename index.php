@@ -23,18 +23,22 @@ $students = $studentManager->getAll();
     </form>
     <tr>
         <th>Stt</th>
+        <th>Id</th>
         <th>Name</th>
         <th>Age</th>
         <th>Address</th>
-        <td><a href="action/add.php">Add</a></td>
+        <td colspan="2"><a href="action/add.php">Add</a></td>
+
     </tr>
     <?php foreach ($students as $key => $student): ?>
         <tr>
             <td><?php echo ++$key ?></td>
+            <td><?php echo $student->getId() ?></td>
             <td><?php echo $student->getName() ?></td>
             <td><?php echo $student->getAge() ?></td>
             <td><?php echo $student->getAddress() ?></td>
-            <td><a href="action/update.php">Update</a></td>
+            <td><a onclick="return confirm('update?')" href="action/update.php?id=<?php echo $student->getId()?>">Update</a></td>
+
             <td><a onclick="return confirm('ban chac chan muon xoa?')" href="action/delete.php?id=<?php echo $student->getId()?>">Delete</a></td>
 
         </tr>

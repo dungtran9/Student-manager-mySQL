@@ -54,4 +54,28 @@ public function __construct($name,$age,$address)
         return $this->id;
     }
 
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param mixed $age
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
 }

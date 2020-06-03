@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $student = new Student($name, $age, $address);
     $studentDB = new StudentManager();
     $studentDB->add($student);
-    header("location: ../index.php");
+    header("Location:../index.php");
 
 }
 ?>

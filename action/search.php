@@ -5,8 +5,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     include_once "../src/database/DBconnect.php";
     include_once "../src/Student.php";
     $name = $_REQUEST["search"];
-    $studentManager = new StudentManager();
-    $students = $studentManager->search($name);
+    if (empty($name)) {
+        header("location: ../index.php");
+    } else {
+        $studentManager = new StudentManager();
+        $students = $studentManager->search($name);
+    }
 }
 ?>
 <!doctype html>
