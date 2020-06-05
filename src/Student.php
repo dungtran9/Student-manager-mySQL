@@ -1,5 +1,5 @@
 <?php
-
+namespace Foder;
 
 class Student
 {

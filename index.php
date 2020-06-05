@@ -1,10 +1,8 @@
 <?php
-include_once "src/Student.php";
-include_once "src/controller/StudentManager.php";
-include_once "src/database/DBconnect.php";
+use Foder\controller\StudentManager;
+require_once  'vendor/autoload.php';
 $studentManager = new StudentManager();
 $students = $studentManager->getAll();
-
 ?>
 <!doctype html>
 <html lang="en">

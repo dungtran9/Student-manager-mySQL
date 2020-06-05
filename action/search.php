@@ -1,9 +1,9 @@
 <?php
+use Foder\controller\StudentManager;
 
+require_once '../vendor/autoload.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    include_once "../src/controller/StudentManager.php";
-    include_once "../src/database/DBconnect.php";
-    include_once "../src/Student.php";
+
     $name = $_REQUEST["search"];
     if (empty($name)) {
         header("location: ../index.php");

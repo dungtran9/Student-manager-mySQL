@@ -1,7 +1,7 @@
 <?php
-include_once "../src/controller/StudentManager.php";
-include_once "../src/database/DBconnect.php";
-include_once "../src/Student.php";
+use Foder\controller\StudentManager;
+use Foder\Student;
+require_once '../vendor/autoload.php';
 $id=$_REQUEST['id'];
 $studentManager = new StudentManager();
 $result = $studentManager->getData($id);

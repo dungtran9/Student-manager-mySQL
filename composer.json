@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Foder\\": "src/"
+    }
+  },
+  "require": {
+    "ext-pdo": "*"
+  }
+}

@@ -1,5 +1,7 @@
 <?php
-
+namespace Foder\database;
+use PDO;
+use PDOException;
 class DBconnect
 {
     protected $dsn;

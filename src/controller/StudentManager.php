@@ -1,8 +1,9 @@
 <?php
-include_once "../database/DBconnect.php";
-include_once "../Student.php";
+namespace Foder\controller;
+use Foder\database\DBconnect;
+use Foder\Student;
 
-class StudentManager
+class  StudentManager
 {
     protected $database;
 
@@ -28,11 +29,11 @@ class StudentManager
 
     public function add($student)
     {
-        $sql = "INSERT INTO `Students`(`Name`,`Age`,`Address`) VALUES (?,?,?) ";
+        $sql = "INSERT INTO `Students`(`Name`,`Age`,`Address`) VALUES (:Name,:Age,:Address) ";
         $stmt = $this->database->prepare($sql);
-        $stmt->bindParam(1, $student->getName());
-        $stmt->bindParam(2, $student->getAge());
-        $stmt->bindParam(3, $student->getAddress());
+        $stmt->bindParam(':Name', $student->getName());
+        $stmt->bindParam(':Age', $student->getAge());
+        $stmt->bindParam(':Address', $student->getAddress());
         return $stmt->execute();
     }
     public function getData($id){
@@ -63,9 +64,9 @@ class StudentManager
     public function search($name)
 
     {
-        $sql = 'SELECT * FROM `Students` WHERE `Name` LIKE :name';
-        $stmt = $this->database->prepare($sql);
-        $stmt->bindValue(":name",'%'.$name.'%');
+//        $sql = 'SELECT * FROM `Students` WHERE `Name` LIKE :name';
+        $stmt = $this->database->prepare("CALL find_student(?)");
+        $stmt->bindValue(1,$name);
         $stmt->execute();
         $result = $stmt->fetchAll();
         $arr = [];

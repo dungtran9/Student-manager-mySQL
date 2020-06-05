@@ -1,8 +1,9 @@
 <?php
+use Foder\controller\StudentManager;
+use Foder\Student;
+require_once '../vendor/autoload.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include_once "../src/controller/StudentManager.php";
-    include_once "../src/database/DBconnect.php";
-    include_once "../src/Student.php";
+
     $name = $_POST['name'];
     $age = $_POST['age'];
     $address = $_POST['address'];
@@ -10,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $studentDB = new StudentManager();
     $studentDB->add($student);
     header("Location:../index.php");
-
 }
 ?>
 
@@ -26,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <form method="post" >
 <label>Name</label>
-<input type="text" name="name"><br>
+<input type="text" name="name" required><br>
 <label>Age</label>
-<input type="text" name="age"><br>
+<input type="text" name="age" required><br>
 <label>Address</label>
-<input type="text" name="address"><br>
+<input type="text" name="address" required><br>
 <input type="submit" value="ADD">
 </form>
 </body>
