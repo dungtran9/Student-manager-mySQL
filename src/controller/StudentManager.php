@@ -64,9 +64,9 @@ class  StudentManager
     public function search($name)
 
     {
-//        $sql = 'SELECT * FROM `Students` WHERE `Name` LIKE :name';
-        $stmt = $this->database->prepare("CALL find_student(?)");
-        $stmt->bindValue(1,$name);
+        $sql = 'SELECT * FROM `Students` WHERE `Name` LIKE :name';
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindValue(':name','%'.$name.'%');
         $stmt->execute();
         $result = $stmt->fetchAll();
         $arr = [];
